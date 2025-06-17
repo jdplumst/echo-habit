@@ -1,10 +1,10 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "./index.css";
+import "@/index.css";
 import { BrowserRouter, Routes } from "react-router";
 import { Route } from "react-router";
-import Timer from "./pages/Timer.tsx";
-import NotFound from "./pages/NotFound.tsx";
+import Timer from "@/pages/Timer.tsx";
+import NotFound from "@/pages/NotFound.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
