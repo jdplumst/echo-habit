@@ -1,6 +1,4 @@
-import "./App.css";
-
-function App() {
+export default function Timer() {
   return (
     <div className="flex min-h-screen min-w-screen flex-col items-center justify-center">
       <div>Timer</div>
@@ -12,5 +10,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
