@@ -1,10 +1,13 @@
 import { Button } from "@/components/ui/button";
+import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { useEffect, useRef, useState } from "react";
 
 const FOCUS_TIME = 1500;
 const BREAK_TIME = 600;
 
 export default function Timer() {
+  useDocumentTitle("Timer");
+
   const [time, setTime] = useState(FOCUS_TIME);
   const [isRunning, setIsRunning] = useState(false);
   const [mode, setMode] = useState<"focus" | "break">("focus");
