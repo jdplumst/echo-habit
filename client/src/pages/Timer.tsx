@@ -6,7 +6,7 @@ const FOCUS_TIME = 1500;
 const BREAK_TIME = 600;
 
 export default function Timer() {
-  useDocumentTitle("Timer");
+  useDocumentTitle("Echo Habit - Timer");
 
   const [time, setTime] = useState(FOCUS_TIME);
   const [isRunning, setIsRunning] = useState(false);
