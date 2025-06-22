@@ -3,7 +3,7 @@
   "name": "echohabit",
   "main": "src/index.ts",
   "compatibility_date": "2025-06-05",
-  "compatibility_flags": ["nodejs_compat"]
+  "compatibility_flags": ["nodejs_compat", "nodejs_compat_populate_process_env"]
   // "vars": {
   //   "MY_VAR": "my-variable"
   // },
