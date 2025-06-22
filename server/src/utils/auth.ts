@@ -2,9 +2,9 @@ import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { drizzle } from "drizzle-orm/libsql";
 
-export function getAuth(
+export const auth = (
   env: CloudflareBindings
-): ReturnType<typeof betterAuth> {
+): ReturnType<typeof betterAuth> => {
   const db = drizzle({
     connection: {
       url: env.DATABASE_URL!,
@@ -15,4 +15,4 @@ export function getAuth(
   return betterAuth({
     database: drizzleAdapter(db, { provider: "sqlite" }),
   });
-}
+};
