@@ -5,7 +5,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 const FOCUS_TIME = 1500;
 const BREAK_TIME = 600;
 
-export default function Timer() {
+export function Timer() {
   useDocumentTitle("Echo Habit - Timer");
 
   const [time, setTime] = useState(FOCUS_TIME);

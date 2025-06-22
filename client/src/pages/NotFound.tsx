@@ -1,6 +1,6 @@
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 
-export default function NotFound() {
+export function NotFound() {
   useDocumentTitle("Not Found");
 
   return (
