@@ -1,8 +1,9 @@
+import { AppBindings } from "@/index";
+import { auth } from "@/utils/auth";
 import { Hono } from "hono";
-import { auth } from "../utils/auth";
 
-export const authRouter = new Hono<{ Bindings: CloudflareBindings }>();
+export const authRouter = new Hono<AppBindings>();
 
-authRouter.on(["POST", "GET"], "/api/auth/**", (c) => {
+authRouter.on(["POST", "GET"], "/**", (c) => {
   return auth(c.env).handler(c.req.raw);
 });

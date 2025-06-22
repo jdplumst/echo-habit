@@ -1,7 +1,7 @@
 import { Hono } from "hono";
-import { authRouter } from "./routes/auth";
-import { auth } from "./utils/auth";
 import { Session, User } from "better-auth";
+import { auth } from "@/utils/auth";
+import { authRouter } from "@/routes/auth";
 
 export type AppBindings = {
   Bindings: CloudflareBindings;
