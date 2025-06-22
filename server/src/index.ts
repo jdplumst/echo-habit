@@ -1,16 +1,22 @@
 import { Hono } from "hono";
 import { authRouter } from "./routes/auth";
 import { auth } from "./utils/auth";
+import { Session, User } from "better-auth";
 
-const app = new Hono<{
+export type AppBindings = {
+  Bindings: CloudflareBindings;
   Variables: {
-    user: typeof auth.$Infer.Session.user | null;
-    session: typeof auth.$Infer.Session.session | null;
+    user: User | null;
+    session: Session | null;
   };
-}>();
+};
+
+const app = new Hono<AppBindings>();
 
 app.use("*", async (c, next) => {
-  const session = await auth.api.getSession({ headers: c.req.raw.headers });
+  const session = await auth(c.env).api.getSession({
+    headers: c.req.raw.headers,
+  });
 
   if (!session) {
     c.set("user", null);
