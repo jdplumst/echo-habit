@@ -1,16 +1,18 @@
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
-import { db } from "../db";
+import { drizzle } from "drizzle-orm/libsql";
 
-export const auth = betterAuth({
-  database: drizzleAdapter(db, {
-    provider: "sqlite",
-  }),
-  socialProviders: {
-    // TODO: set up discord auth
-    // discord: {
-    //   clientId:
-    //   clientse
-    // }
-  },
-});
+export function getAuth(
+  env: CloudflareBindings
+): ReturnType<typeof betterAuth> {
+  const db = drizzle({
+    connection: {
+      url: env.DATABASE_URL!,
+      authToken: env.DATABASE_TOKEN,
+    },
+  });
+
+  return betterAuth({
+    database: drizzleAdapter(db, { provider: "sqlite" }),
+  });
+}
