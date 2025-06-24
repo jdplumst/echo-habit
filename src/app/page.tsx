@@ -1,8 +1,6 @@
-"use client";
-
 import Link from "next/link";
+import { SignIn } from "~/components/sign-in";
 import { Button } from "~/components/ui/button";
-import { signIn } from "~/lib/auth-client";
 
 export default function Home() {
   return (
@@ -15,17 +13,7 @@ export default function Home() {
       <Button>
         <Link href="/timer">Start tracking!</Link>
       </Button>
-      <Button
-        onClick={async () =>
-          await signIn.social({
-            provider: "discord",
-            callbackURL: "/timer",
-            errorCallbackURL: "/error",
-          })
-        }
-      >
-        Discord Login
-      </Button>
+      <SignIn />
     </div>
   );
 }
