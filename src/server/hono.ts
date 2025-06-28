@@ -3,10 +3,12 @@ import "server-only";
 import { Hono } from "hono";
 import { logger } from "hono/logger";
 import { z } from "zod";
-import { describeRoute, openAPISpecs } from "hono-openapi";
+import { describeRoute, generateSpecs, openAPISpecs } from "hono-openapi";
 import { resolver } from "hono-openapi/zod";
 import { authRouter } from "~/server/routers/auth";
 import { auth, type AuthType } from "~/lib/auth";
+import { swaggerUI } from "@hono/swagger-ui";
+import fs from "node:fs";
 
 export const app = new Hono<{ Variables: AuthType }>().basePath("/api");
 
@@ -54,6 +56,7 @@ app.get(
     });
   },
 );
+app.get("/ui", swaggerUI({ url: "/api/openapi" }));
 
 app.get(
   "/openapi",
@@ -70,5 +73,10 @@ app.get(
     },
   }),
 );
+
+void generateSpecs(app).then((spec) => {
+  const pathToSpec = "openapi.json";
+  fs.writeFileSync(pathToSpec, JSON.stringify(spec, null, 2));
+});
 
 export type ApiRoutes = typeof app;
