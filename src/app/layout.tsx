@@ -1,6 +1,7 @@
 import "~/styles/globals.css";
 
 import { type Metadata } from "next";
+import ReactQueryProvider from "~/components/providers/react-query";
 
 export const metadata: Metadata = {
   title: "Echo Habit",
@@ -13,7 +14,9 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body>{children} </body>
+      <body>
+        <ReactQueryProvider>{children}</ReactQueryProvider>{" "}
+      </body>
     </html>
   );
 }
